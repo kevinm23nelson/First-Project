@@ -22,4 +22,14 @@ describe('guess', function() {
   it('should be a function', function () {
     expect(evaluateGuess).to.be.a('function');
   });
-})
+
+  it('should return "correct!" when the guess is correct', function() {
+    let result = evaluateGuess('answer', 'answer');
+    expect(result).to.equal('correct!');
+  });
+
+  it('should return "incorrect!" when the guess is incorrect', function() {
+    let result = evaluateGuess('incorrectAnswer', 'answer');
+    expect(result).to.equal('incorrect!');
+  });
+});
