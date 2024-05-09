@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { createRound } = require('../src/round');
+const { createRound, takeTurn } = require('../src/round');
 const { createCard } = require('../src/card');
 const { createDeck } = require('../src/deck');
 
@@ -38,3 +38,50 @@ describe('round', function() {
         })
     })
 })
+describe('turn', function() {
+    let round;
+    let roundDeck;
+
+    // Setup for each test to ensure fresh state
+    beforeEach(function() {
+        roundDeck = [
+            {answer: "object"}, // Assuming a deck with simple objects
+            {answer: "array"},
+            {answer: "function"}
+        ];
+        round = createRound(roundDeck); // Assume this sets up the round correctly
+    });
+
+    it('should be able to change turns', function(){
+        takeTurn("object", round);
+        expect(round.turns).to.equal(1);
+        takeTurn("array", round);
+        expect(round.turns).to.equal(2);
+    });
+
+    it('should make the next card become the current card', function(){
+        takeTurn("object", round);
+        expect(round.currentCard).to.deep.equal(roundDeck[1]);  
+    });
+
+    it('should evaluate if the answer is correct', function(){
+        takeTurn("object", round); // Correct answer for first card
+        expect(round.incorrectGuesses).to.deep.equal([]);
+        takeTurn("wrong answer", round); // Incorrect answer for second card
+        expect(round.incorrectGuesses).to.deep.equal([2]); // Index of the second card if incorrect
+    });
+
+    it('should return feedback if correct or incorrect', function(){
+        const correctResult = takeTurn("object", round); // Correct answer for first card
+        expect(correctResult).to.equal('correct!');
+        const wrongResult = takeTurn("wrong answer", round); // Incorrect answer for second card
+        expect(wrongResult).to.equal('incorrect!');
+    });
+
+    it('should handle the end of the deck', function() {
+        takeTurn("object", round); // First card
+        takeTurn("array", round);  // Second card
+        takeTurn("function", round); // Third card
+        expect(round.currentCard).to.be.null; // Should be no more cards
+    });
+});
