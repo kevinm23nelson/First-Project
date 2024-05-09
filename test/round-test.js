@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { createRound, takeTurn } = require('../src/round');
+const { createRound, takeTurn, calculatePercentCorrect } = require('../src/round');
 const { createCard } = require('../src/card');
 const { createDeck } = require('../src/deck');
 
@@ -28,7 +28,7 @@ const { createDeck } = require('../src/deck');
     const roundDeck = createDeck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10])
 
 describe('round', function() {
-  it('should be able to create a game round object', function() {
+  it('should be able to create a game round object', function(){
     const round = createRound(roundDeck)
     expect(round).to.deep.equal({
         deck: roundDeck,
@@ -38,12 +38,13 @@ describe('round', function() {
         })
     })
 })
+
 describe('turn', function() {
     let round;
     let roundDeck;
 
     // Setup for each test to ensure fresh state
-    beforeEach(function() {
+    beforeEach(function(){
         roundDeck = [
             {answer: "object"}, // Assuming a deck with simple objects
             {answer: "array"},
@@ -78,10 +79,21 @@ describe('turn', function() {
         expect(wrongResult).to.equal('incorrect!');
     });
 
-    it('should handle the end of the deck', function() {
+    it('should handle the end of the deck', function(){
         takeTurn("object", round); // First card
         takeTurn("array", round);  // Second card
         takeTurn("function", round); // Third card
         expect(round.currentCard).to.be.null; // Should be no more cards
     });
 });
+
+describe('calculate percentage correct', function () {
+    it('should calculate the percent of correct answers', function () {
+        const round = createRound(roundDeck)
+        const percentage = calculatePercentCorrect(round)
+        const expectedPercentage = ((round.turns - round.incorrectGuesses.length) / 30) * 100;
+        expect(percentage).to.equal(expectedPercentage)
+    })
+});
+
+

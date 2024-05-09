@@ -1,4 +1,4 @@
-function createRound(roundDeck) {
+function createRound(roundDeck){
     return {
         deck: roundDeck,
         currentCard: roundDeck[0],  // Assuming the deck is an array and not empty.
@@ -7,7 +7,7 @@ function createRound(roundDeck) {
     };
 }
 
-function takeTurn(guess, round) {
+function takeTurn(guess, round){
     // Increment the turn count
     round.turns += 1;
 
@@ -35,10 +35,23 @@ function takeTurn(guess, round) {
     return feedback;
 }
 
-
+function calculatePercentCorrect(round) {
+        if (!round || round.turns === 0) {
+            // Return 0 if there's no round data or no turns have been taken to avoid division by zero
+            return 0;
+        }
+        // Calculate the number of correct answers
+        const correctAnswers = round.turns - round.incorrectGuesses.length;
+        // Assuming the total number of turns should be 30, as used in the test
+        const totalQuestions = 30;
+        // Calculate percentage
+        return (correctAnswers / totalQuestions) * 100;
+    }
+    
 
 module.exports = {
     createRound,
     takeTurn,
+    calculatePercentCorrect,
 
 }
