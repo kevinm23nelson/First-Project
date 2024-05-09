@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const { createRound, takeTurn, calculatePercentCorrect } = require('../src/round');
+const { createRound, takeTurn, calculatePercentCorrect, endRound } = require('../src/round');
 const { createCard } = require('../src/card');
 const { createDeck } = require('../src/deck');
 
@@ -96,4 +96,12 @@ describe('calculate percentage correct', function () {
     })
 });
 
-
+describe('end round', function () {
+    it('should print **Round over!** Your answered # % of the questions correctly', function () {
+        const round = createRound(roundDeck)
+        const percentage = calculatePercentCorrect(round)
+        const print = endRound(round)
+        const expectedMessage = `**Round over!** You answered ${percentage} % of the questions correctly!`
+        expect(print).to.equal(expectedMessage)
+    })
+});

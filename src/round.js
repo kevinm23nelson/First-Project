@@ -48,10 +48,18 @@ function calculatePercentCorrect(round) {
         return (correctAnswers / totalQuestions) * 100;
     }
     
+    function endRound(round) {
+        const correctAnswers = round.turns - round.incorrectGuesses.length;
+        const totalQuestions = round.deck.length; // Use the deck length for total number of questions
+        const percentage = (correctAnswers / totalQuestions) * 100;
+        return `**Round over!** You answered ${percentage} % of the questions correctly!`;
+    }
+    
 
 module.exports = {
     createRound,
     takeTurn,
     calculatePercentCorrect,
+    endRound,
 
 }
