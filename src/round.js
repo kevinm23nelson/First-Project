@@ -28,12 +28,14 @@ function takeTurn(guess, round){
     if (currentIndex + 1 < round.deck.length) {
         round.currentCard = round.deck[currentIndex + 1];
     } else {
-        // If no more cards are available, set the current card to null
+        // If no more cards are available, set the current card to null and end the round
         round.currentCard = null;
+        return endRound(round);  // Immediately return the endRound message when no more cards are left
     }
 
     return feedback;
 }
+
 
 function calculatePercentCorrect(round) {
         if (!round || round.turns === 0) {
