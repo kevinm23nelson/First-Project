@@ -12,7 +12,7 @@ function takeTurn(guess, round){
     round.turns += 1;
 
     // Determine if the guess is correct
-    const isCorrect = guess === round.currentCard.answer;
+    const isCorrect = guess === round.currentCard.correctAnswer;
     
     // Determine feedback based on whether the guess was correct or not
     let feedback;
