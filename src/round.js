@@ -19,7 +19,6 @@ function takeTurn(guess, round) {
         round.currentCard = round.deck[currentIndex + 1];
     } else {
         round.currentCard = null;
-        feedback += ' ' + endRound(round);
     }
     return feedback;
 }
@@ -34,9 +33,8 @@ function calculatePercentCorrect(round) {
 }
     
 function endRound(round) {
-        const correctAnswers = round.turns - round.incorrectGuesses.length;
-        const totalQuestions = round.deck.length; 
-        const percentage = (correctAnswers / totalQuestions) * 100;
+        const percentage = calculatePercentCorrect(round)
+        console.log(`**Round over!** You answered ${percentage} % of the questions correctly!`)
         return `**Round over!** You answered ${percentage} % of the questions correctly!`;
 }
     

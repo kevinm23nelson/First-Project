@@ -58,6 +58,6 @@ describe('card count', function (){
 
     const deck = createDeck([card1, card2, card3, card4, card5, card6, card7, card8, card9, card10])
 
-    expect(countCards(deck)).to.equal(deck.length)
+    expect(countCards(deck)).to.equal(10)
   })
 })

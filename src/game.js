@@ -18,12 +18,13 @@ function start() {
     const round = createRound(deck);
     printMessage(deck);
     printQuestion(round);
+    return deck, round
 }
 
-start();
 
 module.exports = { 
   printMessage, 
-  printQuestion 
+  printQuestion,
+  start 
 
 };
