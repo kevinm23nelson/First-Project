@@ -19,38 +19,42 @@ Mocha & Chai: These JavaScript libraries are used for writing unit tests to ensu
 
 Follow these instructions to get the FlashCards game up and running on your local machine.
 
-Prerequisites
+Prerequisites:
+
 Before you begin, ensure you have Node.js installed on your computer. You can download and install Node.js from nodejs.org.
 
-Clone the Repository
+Clone the Repository:
+
 First, clone the repository to your local machine using Git. Open a terminal and run the following command:
 
 ```git clone https://github.com/your-username/flashcards-game.git```
 
-git clone https://github.com/your-username/flashcards-game.git
-cd flashcards-game
+Then cd into the file:
+
+```cd flashcards-game```
+
 Replace https://github.com/your-username/flashcards-game.git with the actual URL of your repository.
 
-Install Dependencies
+Install Dependencies:
+
 Navigate into the project directory and install the required npm packages:
 
-bash
-Copy code
-npm install
+```npm install```
+
 This command installs all the dependencies defined in the package.json file, including Mocha and Chai for running the tests.
 
-Running the Game
+Running the Game:
+
 To start the game, simply run the following command in your terminal:
 
-bash
-Copy code
-node game.js
+```node game.js```
+
 This will execute the game.js file using Node.js, and the game interface will appear in your terminal.
 
-Running Tests
+Running Tests:
+
 If you want to run the tests to ensure the game logic is functioning correctly, execute the following command:
 
-bash
-Copy code
-npm test
+```npm test```
+
 This command runs the test suites defined in the project using Mocha, and you will see the test results in your terminal.
