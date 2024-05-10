@@ -25,8 +25,8 @@ Before you begin, ensure you have Node.js installed on your computer. You can do
 Clone the Repository
 First, clone the repository to your local machine using Git. Open a terminal and run the following command:
 
-```git clone https://github.com/your-username/flashcards-game.git
-```
+```git clone https://github.com/your-username/flashcards-game.git```
+
 git clone https://github.com/your-username/flashcards-game.git
 cd flashcards-game
 Replace https://github.com/your-username/flashcards-game.git with the actual URL of your repository.
